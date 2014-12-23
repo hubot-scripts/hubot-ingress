@@ -17,6 +17,7 @@ badgeList = [
   'builder1', 'builder2', 'builder3', 'builder4', 'builder5',
   'connector1', 'connector2', 'connector3', 'connector4', 'connector5',
   'darsana',
+  'engineer1', 'engineer2', 'engineer3', 'engineer4', 'engineer5',
   'eve',
   'explorer1', 'explorer2', 'explorer3', 'explorer4', 'explorer5',
   'founder',
@@ -28,11 +29,14 @@ badgeList = [
   'interitus',
   'liberator1', 'liberator2', 'liberator3', 'liberator4', 'liberator5',
   'mindcontroller1', 'mindcontroller2', 'mindcontroller3', 'mindcontroller4', 'mindcontroller5',
+  'oliver-lynton-wolfe',
   'pioneer1', 'pioneer2', 'pioneer3', 'pioneer4', 'pioneer5',
   'purifier1', 'purifier2', 'purifier3', 'purifier4', 'purifier5',
   'recharger1', 'recharger2', 'recharger3', 'recharger4', 'recharger5',
   'recursion',
   'seer1', 'seer2', 'seer3', 'seer4', 'seer5',
+  'specops1', 'specops2', 'specops3', 'specops4', 'specops5',
+  'trekker1', 'trekker2', 'trekker3', 'trekker4', 'trekker5',
   'verified'
 ]
 
