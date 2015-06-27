@@ -9,6 +9,7 @@
 #
 # Commands:
 #   hubot intelmap for <search>
+#   https://www.ingress.com/intel?ll=<lat>,<lng> - Return Google Maps image and link for intelmap location
 #
 
 module.exports = (robot) ->
@@ -41,6 +42,25 @@ module.exports = (robot) ->
     url = intelmapUrl result
     msg.send url
 
+  gmapImageUrl = (latlng) ->
+    return "https://maps.googleapis.com/maps/api/staticmap?center=" + latlng + "&size=400x300&zoom=15&markers=" + latlng
+
+  sendGmapImageLink = (msg, result) ->
+    url = gmapImageUrl result
+    msg.send url
+
+  gmapLink = (latlng) ->
+    return "https://maps.google.com/maps?ll=" + latlng + "&q=" + latlng
+
+  sendGmapLink = (msg, result) ->
+    url = gmapLink result
+    return msg.send url
+
   robot.respond /(intelmap|intel map)(?: for)?\s(.*)/i, (msg) ->
     location = msg.match[2]
     lookupLatLong msg, location, sendIntelLink
+
+  robot.hear /https:\/\/www.ingress.com\/intel\?ll=(-?\d+\.\d+,-?\d+\.\d+)/, (msg) ->
+    latlng = msg.match[1]
+    sendGmapImageLink msg, latlng
+    sendGmapLink msg, latlng
