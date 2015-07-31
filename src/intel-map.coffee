@@ -9,7 +9,7 @@
 #
 # Commands:
 #   hubot intelmap for <search>
-#   https://www.ingress.com/intel?ll=<lat>,<lng> - Return Google Maps image and link for intelmap location
+#   ingress.com/intel?ll=<lat>,<lng> - Return Google Maps image and link for intelmap location
 #
 
 module.exports = (robot) ->
@@ -60,7 +60,7 @@ module.exports = (robot) ->
     location = msg.match[2]
     lookupLatLong msg, location, sendIntelLink
 
-  robot.hear /https:\/\/www.ingress.com\/intel\?ll=(-?\d+\.\d+,-?\d+\.\d+)/, (msg) ->
+  robot.hear /ingress.com\/intel\?ll=(-?\d+\.\d+,-?\d+\.\d+)/, (msg) ->
     latlng = msg.match[1]
     sendGmapImageLink msg, latlng
     sendGmapLink msg, latlng
