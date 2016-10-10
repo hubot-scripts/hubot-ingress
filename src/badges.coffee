@@ -148,11 +148,13 @@ module.exports = (robot) ->
   badges =
     add: (user, badgeNames...) ->
       for badgeName in badgeNames
-        toRemove = badgeList.filter (x) ->
-          (x.replace /\d+/, '') is (badgeName.replace /\d+/, '')
-        @del user, badge for badge in toRemove
+        # only replace tiered badges - allows having all of the character badges
+        if not badgeTypes[badgeName]?
+          toRemove = badgeList.filter (x) ->
+            (x.replace /\d+/, '') is (badgeName.replace /\d+/, '')
+          @del user, badge for badge in toRemove
         userBadges = robot.brain.data.ingressBadges[user.id] ?= []
-        userBadges.push ":#{badgeName}:"
+        userBadges.push ":#{badgeName}:" unless ":#{badgeName}:" in (badges.forUser user)
     del: (user, badgeName) ->
       robot.brain.data.ingressBadges[user.id] = (badges.forUser user).filter (x) ->
         x isnt ":#{badgeName}:"

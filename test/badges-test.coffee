@@ -110,6 +110,23 @@ describe 'ingress: badges', ->
     expect(badges).to.include(':hacker4:')
     expect(badges).to.include(':builder1:')
     expect(badges).to.include(':oliver-lynton-wolfe:')
+  
+  it '"I have" can handle multiple character badges when the respective character has an old and new badge', ->
+    @msg.match = [0, 'I', 'susanna-moyer1, susanna-moyer2']
+    @robot.respond.args[0][1](@msg)
+    badges = @data.ingressBadges.U123
+    expect(badges).to.be.a('array')
+    expect(badges).to.include(':susanna-moyer1:')
+    expect(badges).to.include(':susanna-moyer2:')
+    
+  it '"I have" doesn\'t attempt to add an anomaly or character badge that has already been added', ->
+    @msg.match = [0, 'I', 'shonin']
+    @robot.respond.args[0][1](@msg)
+    @robot.respond.args[0][1](@msg)
+    badges = @data.ingressBadges.U123
+    expect(badges).to.be.a('array')
+    expect(badges).to.include(':shonin:')
+    expect(badges).to.satisfy((bdgs) -> (bdgs.filter (x) -> x == ':shonin:').length == 1)
 
   it 'responds to "user2 has the verified badge"', ->
     @msg.match = [0, 'user2', 'verified']
@@ -135,7 +152,7 @@ describe 'ingress: badges', ->
     badges = @data.ingressBadges.U123
     expect(@msg.reply).to.have.been.calledWith('removed the :founder: badge')
     expect(badges).not.to.include(':founder:')
-
+  
   describe 'handles usernames with special characters [@-.]', ->
     it '(user-2)', ->
       @msg.match = [0, 'user-2', 'verified']
