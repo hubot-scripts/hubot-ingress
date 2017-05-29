@@ -51,6 +51,7 @@ badgeList = [
   'kodama-smiles',
   'liberator1', 'liberator2', 'liberator3', 'liberator4', 'liberator5',
   'luminary1', 'luminary2', 'luminary3', 'luminary4', 'luminary5',
+  'magnus1', 'magnus2',
   'mindcontroller1', 'mindcontroller2', 'mindcontroller3', 'mindcontroller4', 'mindcontroller5',
   'missionday1', 'missionday2', 'missionday3', 'missionday4', 'missionday5',
   'nl-1331',
@@ -147,6 +148,7 @@ badgeTypes = {
   'kodama-smiles': 1,
   'liberator': 5,
   'luminary': 5,
+  'magnus': 2,
   'mindcontroller': 5,
   'missionday': 5,
   'nl-1331': 1,
@@ -309,6 +311,8 @@ module.exports = (robot) ->
     for badgeType, badgeNum of badgeTypes
       if badgeNum == 1
         message += "#{badgeType}: :#{badgeType}: \n"
+      else if badgeNum == 2
+        message += "#{badgeType}: :#{badgeType}1: :#{badgeType}2: \n"
       else if badgeNum == 5
         message += "#{badgeType}: :#{badgeType}1: :#{badgeType}2: :#{badgeType}3: :#{badgeType}4: :#{badgeType}5: \n"
       else if badgeNum == 6
