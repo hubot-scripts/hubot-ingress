@@ -86,7 +86,7 @@ calculateMuDifference = (ours, theirs) ->
     ourScore = checkpointsDone * ours
     theirScore = checkpointsDone * theirs
     difference = theirScore - ourScore
-    difference = 0 if difference < 1
+    difference = -difference if difference < 1
     difference + 1
 
 getMuNeededNow = (ours, theirs) ->
